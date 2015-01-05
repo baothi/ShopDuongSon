@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Order>
+@{
+    ViewBag.Title = "MyOrders";
+}
+
+<h2>My Orders</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Id</th>
+        <th>Customer</th>
+        <th>OrderDate</th>
+        <th>Reciever</th>
+        <th>Amount</th>
+        <th></th>
+    </tr>
+    @foreach (var o in Model)
+    {
+        <tr>
+            <td>@o.Id</td>
+            <td>@o.Customer.Fullname</td>
+            <td>@o.OrderDate</td>
+            <td>@o.Receiver</td>
+            <td>@o.Amount</td>
+            <td>
+                <a href="/Order/Detail/@o.Id">Details</a>
+            </td>
+        </tr>
+    }
+</table>

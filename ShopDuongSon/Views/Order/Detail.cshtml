@@ -1,0 +1,37 @@
+﻿@model Order
+@{
+    ViewBag.Title = "Chi tiết đơn đặt hàng";
+}
+<h2>Chi tiết đơn đặt hàng</h2>
+<ul>
+    <li>Order Id: @Model.Id</li>
+    <li>Customer: @Model.Customer.Fullname</li>
+    <li>Order Date: @Model.OrderDate</li>
+    <li>Required Date: @Model.RequireDate</li>
+    <li>Receiver: @Model.Receiver</li>
+    <li>Address: @Model.Address</li>
+    <li>Amount: @Model.Amount</li>
+    <li>Description: @Model.Description</li>
+</ul>
+
+<h2>Các mặt hàng trên đơn hàng</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>Unit Price</th>
+        <th>Discount</th>
+        <th>Quantity</th>
+        <th>Amount</th>
+    </tr>
+    @foreach (var d in Model.OrderDetails)
+    {
+        var Amount = d.UnitPrice * d.Quantity * (1 - d.Discount);
+        <tr>
+            <td>@d.Product.Name</td>
+            <td>@d.UnitPrice</td>
+            <td>@d.Discount</td>
+            <td>@d.Quantity</td>
+            <td>@Amount</td>
+        </tr>
+    }
+</table>
